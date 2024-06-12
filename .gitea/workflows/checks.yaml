@@ -1,0 +1,32 @@
+name: Go Checks
+run-name: Go Checks
+on: [push]
+
+jobs:
+  checks:
+    name: checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+          check-latest: true
+          cache: true
+
+      - name: Install govulncheck
+        run: go install golang.org/x/vuln/cmd/govulncheck@latest
+
+      - name: Go Tidy
+        run: go mod tidy && git diff --exit-code
+      - name: Go Mod
+        run: go mod download
+      - name: Go Mod Verify
+        run: go mod verify
+
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v6
+
+      - name: Run govulncheck
+        run: govulncheck -test ./...
