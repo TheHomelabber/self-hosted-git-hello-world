@@ -1,5 +1,5 @@
 # Hello World
-A small project used in our series ["Self-hosting Git with CI/CD, using Gitea, Actions and its Container registry"](https://thehomelabber.com/guides/self-hosted-git-ci-cd)
+A small project used in our series ["Self-hosting Git with CI/CD, using Gitea, Actions and its Container registry"](https://thehomelabber.com/series/self-hosted-git-with-gitea/)
 
 ---
 
